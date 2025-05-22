@@ -11,14 +11,9 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://clientfromhell.co', 'https://clientfromhell.co', 'http://www.clientfromhell.co', 'https://www.clientfromhell.co'],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: process.env.CORS_ORIGIN || 'https://clientfromhell.co',
+  credentials: true
 }));
-
-// Add OPTIONS pre-flight handling for all routes
-app.options('*', cors());
 app.use(express.json());
 app.use(cookieParser());
 
